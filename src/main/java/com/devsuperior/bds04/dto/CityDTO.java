@@ -3,6 +3,7 @@ package com.devsuperior.bds04.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import com.devsuperior.bds04.entities.City;
 
@@ -11,7 +12,7 @@ public class CityDTO implements Serializable {
 	
 	private Long id;
 	
-	@NotBlank(message = "O nome da cidade é um campo obrigatório")
+	@NotBlank(message = "Campo requerido")
 	private String name;
 	
 	public CityDTO() {

@@ -45,7 +45,7 @@ public class CityController {
 	}
 
 	@PostMapping
-	public ResponseEntity<CityDTO> insert(@RequestBody CityDTO cityDTO) {
+	public ResponseEntity<CityDTO> insert(@Valid @RequestBody CityDTO cityDTO) {
 
 		cityDTO = cityService.insert(cityDTO);
 
