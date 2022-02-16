@@ -24,9 +24,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Autowired
 	private Environment env;
 	
-	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
+	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**"};
 
-	private static final String[] OPERATOR_GET = { "/departments/**", "/employees/**" };
+	private static final String[] PUBLIC_GET = { "/cities/**", "/events/**"};
+
+	private static final String[] CLIENT_POST = { "/events/**" };
 
 
 	// Esse método é responsável por decodificar o token e analisar
@@ -54,7 +56,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		
 		http.authorizeRequests()
 			.antMatchers(PUBLIC).permitAll()
-			.antMatchers(HttpMethod.GET, OPERATOR_GET).hasAnyRole("OPERATOR", "ADMIN")
+			.antMatchers(HttpMethod.GET, PUBLIC_GET).permitAll()
+			.antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT")
 			.anyRequest().hasAnyRole("ADMIN");
 
 	}
